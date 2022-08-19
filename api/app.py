@@ -1,7 +1,8 @@
 
+from crypt import methods
 from sqlalchemy_utils import ChoiceType
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+from flask import Flask, request, json
 from flask_restx import Resource, fields, Api
 from flask_cors import CORS
 
@@ -105,3 +106,28 @@ class Users(Resource):
     @api.marshal_with(user_serializer, envelope='resource')
     def get(self, company_id):
         return User.query.filter_by(company_id=company_id).all()
+
+# @api.route('/setAppt', methods={'POST'})
+# class SetAppt(Resource):
+#     def post():
+#         if(request.method == 'POST'):
+#             client = request.form.get("client")
+#             console.log(client)
+#             return {"client":client}
+
+
+@app.route("/setAppt", methods=["POST"])
+def setAppt():
+    if request.method == "POST":
+        request_data = json.loads(request.data)
+        #print(request_data['content'])
+        print(request_data.get('client'))
+        print(request_data.get('cleaner'))
+        print(request_data.get('start'))
+        print(request_data.get('end'))
+        print(request_data.get('date'))
+
+        #put the above info in the log file
+        return request_data
+    else:
+        return "nothing to send"

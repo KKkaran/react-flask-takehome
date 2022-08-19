@@ -1,4 +1,5 @@
 
+from crypt import methods
 import app
 from flask_restx import Resource
 from app import Company, User, api
@@ -21,3 +22,5 @@ class Companies(Resource):
 class Users(Resource):
     def get(self, company_id):
         return User.query.filter_by(company_id).all()
+
+

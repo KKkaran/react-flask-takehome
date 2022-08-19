@@ -2,6 +2,7 @@ import * as React from "react";
 import "./App.css";
 import * as request from "./request";
 import FlashMessage from "react-flash-message"
+import axios from "axios";
 
 function App() {
   const [companies, setCompanies] = React.useState();
@@ -26,14 +27,24 @@ function App() {
     e.preventDefault();
     setMsg(!msg)
     let t = document.getElementById("exampleInput125") //getting the cleaner name
-    console.log(t.options[t.selectedIndex].text)
+    let cleaner = t.options[t.selectedIndex].text
+    console.log(cleaner)
     console.log(client,date,start,end)
     console.log(msg)
+    //post request to flask server
+    axios.post("http://127.0.0.1:3001/setAppt", {client,cleaner,start,end,date}).then(d=>console.log(d)).catch(er=>console.log(er))
+    fetch("http://127.0.0.1:3001/setAppt",{
+      method:"post",
+      body: JSON.stringify({
+        content:client
+      })
+    })
     //set the fields back to empty after form submit
     setClient("")
     setDate("")
     setStart("")
     setEnd("")
+    setMsg(!msg)
     
   }
 
@@ -66,6 +77,7 @@ function App() {
                 aria-describedby="emailHelp123"
                 placeholder="Client Email Address"
                 value={client}
+                name='client'
                 onChange = {(e)=>setClient(e.target.value)}
                 required
               />
