@@ -1,17 +1,41 @@
 import * as React from "react";
 import "./App.css";
 import * as request from "./request";
+import FlashMessage from "react-flash-message"
 
 function App() {
   const [companies, setCompanies] = React.useState();
   const [cleaners, setCleaners] = React.useState();
   const [status, setStatus] = React.useState();
 
+  const [client, setClient] = React.useState()
+  const [date, setDate] = React.useState();
+  const [start,setStart] = React.useState();
+  const [end, setEnd] = React.useState();
+  const [msg,setMsg] = React.useState(false)
+  
   const handleCleanerList = (event) => {
     request.getCleanersInCompany(event.target.value).then((result) => {
       setCleaners(result);
     });
   };
+
+
+  const sumbitRequest = (e)=>{
+    
+    e.preventDefault();
+    setMsg(!msg)
+    let t = document.getElementById("exampleInput125") //getting the cleaner name
+    console.log(t.options[t.selectedIndex].text)
+    console.log(client,date,start,end)
+    console.log(msg)
+    //set the fields back to empty after form submit
+    setClient("")
+    setDate("")
+    setStart("")
+    setEnd("")
+    
+  }
 
   const handleStatus = (event) => {
     setStatus(event.target.value);
@@ -32,7 +56,7 @@ function App() {
         Request a cleaner
       </h1>
       <div className="block p-6 rounded-lg shadow-lg bg-white w-full">
-        <form>
+        <form onSubmit={sumbitRequest}>
           <div className="grid grid-cols-2 gap-4">
             <div className="form-group mb-6">
               <input
@@ -41,6 +65,9 @@ function App() {
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
                 placeholder="Client Email Address"
+                value={client}
+                onChange = {(e)=>setClient(e.target.value)}
+                required
               />
             </div>
             <div className="form-group mb-6">
@@ -64,6 +91,7 @@ function App() {
                 aria-describedby="emailHelp124"
                 placeholder="Select Company"
                 onChange={handleCleanerList}
+                required
               >
                 {companies ? (
                   companies.map(({ id, name }) => (
@@ -96,6 +124,8 @@ function App() {
               id="exampleInput125"
               onChange={handleStatus}
               onClick={handleStatus}
+              
+              required
             >
               <option disabled={true} value={""}>
                 {" "}
@@ -124,6 +154,9 @@ function App() {
               Select Date
               <input
                 type="date"
+                value={date}
+                required
+                onChange = {(e)=>{setDate(e.target.value)}}
                 className="form-control block
                                     w-full
                                     px-3
@@ -139,6 +172,7 @@ function App() {
                                     m-0
                                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Select Date"
+                name="date"
               />
             </div>
             <div className="grid grid-cols-2 gap-4 pt-3">
@@ -147,6 +181,9 @@ function App() {
               <div className="">
                 <input
                   type="time"
+                  value={start}
+                  required
+                  onChange = {(e)=>setStart(e.target.value)}
                   className="form-control block
                                         w-full
                                         px-3
@@ -167,6 +204,9 @@ function App() {
               <div className="">
                 <input
                   type="time"
+                  value = {end}
+                  required
+                  onChange = {(e)=>setEnd(e.target.value)}
                   className="form-control block
                                         w-full
                                         px-3
@@ -212,6 +252,15 @@ function App() {
             Book Cleaner
           </button>
         </form>
+        <div>
+
+        </div>
+            {!msg && 
+              <FlashMessage duration={5000} persistOnHover={true}>
+              <p style={{color:"green"}}>Your booking has been confirmed. Check your email.</p>
+            </FlashMessage>
+            
+            }
       </div>
     </div>
   );
