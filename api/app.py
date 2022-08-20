@@ -5,7 +5,7 @@ from flask import Flask, request, json
 from flask_restx import Resource, fields, Api
 from flask_cors import CORS
 from loggingFile import *
-
+from utils.sendEmail import *
 app = Flask(__name__)
 api = Api(app)
 
@@ -130,6 +130,13 @@ def setAppt():
         append_new_line('log.txt', request_data.get('client') + " scheduled " + request_data.get('cleaner') + " from "
         + request_data.get('start') + " to " + request_data.get('end')+ " on " + request_data.get('date'))
         
+        #send the confirmation email to the client and the cleaner
+        sendConfirmationEmail(request_data.get('client'),request_data.get('cleaner').split(":")[1],
+            {
+                "start":request_data.get('start'),
+                "end":request_data.get('end'),
+                "date":request_data.get('date')
+            }); 
 
         #sedning it back to the front end as response...
         return request_data

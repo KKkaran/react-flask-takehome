@@ -8,7 +8,7 @@ companyXYZ = Company(name='Company XYZ')
 companyABC = Company(name='Company ABC')
 companyAMZ = Company(name='Company AMZ')
 
-user1 = User(name='Karan Sodhi', email_address="Karan.Sodhi@companyxyz.com",
+user1 = User(name='Karan Sodhi', email_address="karanpreetsodhi1996@gmail.com",
              availability_status='available', company=companyXYZ)
 
 user2 = User(name='Mary Mapt', email_address="mary.mapt@companyxyz.com",
