@@ -28,17 +28,17 @@ function App() {
     setMsg(!msg)
     let t = document.getElementById("exampleInput125") //getting the cleaner name
     let cleaner = t.options[t.selectedIndex].text
-    console.log(cleaner)
-    console.log(client,date,start,end)
-    console.log(msg)
+    // console.log(cleaner)
+    // console.log(client,date,start,end)
+    // console.log(msg)
     //post request to flask server
     axios.post("http://127.0.0.1:3001/setAppt", {client,cleaner,start,end,date}).then(d=>console.log(d)).catch(er=>console.log(er))
-    fetch("http://127.0.0.1:3001/setAppt",{
-      method:"post",
-      body: JSON.stringify({
-        content:client
-      })
-    })
+    // fetch("http://127.0.0.1:3001/setAppt",{
+    //   method:"post",
+    //   body: JSON.stringify({
+    //     content:client
+    //   })
+    // })
     //set the fields back to empty after form submit
     setClient("")
     setDate("")

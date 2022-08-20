@@ -1,10 +1,10 @@
 
-from crypt import methods
 from sqlalchemy_utils import ChoiceType
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, json
 from flask_restx import Resource, fields, Api
 from flask_cors import CORS
+from loggingFile import *
 
 app = Flask(__name__)
 api = Api(app)
@@ -126,8 +126,13 @@ def setAppt():
         print(request_data.get('start'))
         print(request_data.get('end'))
         print(request_data.get('date'))
+        #logging shift details in log file
+        append_new_line('log.txt', request_data.get('client') + " scheduled " + request_data.get('cleaner') + " from "
+        + request_data.get('start') + " to " + request_data.get('end')+ " on " + request_data.get('date'))
+        
 
-        #put the above info in the log file
+        #sedning it back to the front end as response...
         return request_data
     else:
         return "nothing to send"
+
