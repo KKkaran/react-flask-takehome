@@ -15,6 +15,8 @@ function App() {
   const [end, setEnd] = React.useState();
   const [msg,setMsg] = React.useState(false)
   
+
+
   const handleCleanerList = (event) => {
     request.getCleanersInCompany(event.target.value).then((result) => {
       setCleaners(result);
@@ -46,6 +48,20 @@ function App() {
   const handleStatus = (event) => {
     setStatus(event.target.value);
   };
+
+  const disableDate = ()=>{
+    let dd,mm,yyyy;
+    let today = new Date();
+    dd = today.getDate()
+    mm = today.getMonth()+1
+    yyyy = today.getFullYear();
+
+    if(parseInt(mm)<10)
+      return `${yyyy}-0${mm}-${dd}` 
+    else 
+      return `${yyyy}-${mm}-${dd}`
+      
+  }
 
   React.useEffect(() => {
     // Update the document title using the browser API
@@ -164,7 +180,9 @@ function App() {
               Select Date
               <input
                 type="date"
+                //min={"2022-08-24"}
                 value={date}
+                min={disableDate()}
                 required
                 onChange = {(e)=>{setDate(e.target.value)}}
                 className="form-control block
