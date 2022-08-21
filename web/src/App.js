@@ -28,17 +28,12 @@ function App() {
     setMsg(!msg)
     let t = document.getElementById("exampleInput125") //getting the cleaner name
     let cleaner = t.options[t.selectedIndex].text
-    // console.log(cleaner)
-    // console.log(client,date,start,end)
-    // console.log(msg)
-    //post request to flask server
-    axios.post("http://127.0.0.1:3001/setAppt", {client,cleaner,start,end,date}).then(d=>console.log(d)).catch(er=>console.log(er))
-    // fetch("http://127.0.0.1:3001/setAppt",{
-    //   method:"post",
-    //   body: JSON.stringify({
-    //     content:client
-    //   })
-    // })
+    
+    axios.post("http://127.0.0.1:3001/setAppt", 
+        {client,cleaner,start,end,date}
+        ).then(d=>console.log(d))
+        .catch(er=>console.log(er))
+    
     //set the fields back to empty after form submit
     setClient("")
     setDate("")
@@ -60,7 +55,10 @@ function App() {
     }
     fetchData();
   }, []);
-
+  React.useEffect(()=>{
+    console.log("booking confirmed")
+    
+  },[msg])
   return (
     <div className="w-6/12 mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
       <h1 className="text-3xl text-gray-700 font-bold mb-5">
@@ -267,12 +265,14 @@ function App() {
         <div>
 
         </div>
-            {!msg && 
+        <div className="message" style={{display:"none"}}>
+          {msg && 
               <FlashMessage duration={5000} persistOnHover={true}>
               <p style={{color:"green"}}>Your booking has been confirmed. Check your email.</p>
             </FlashMessage>
             
             }
+        </div>
       </div>
     </div>
   );
