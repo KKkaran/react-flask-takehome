@@ -20,7 +20,7 @@ def sendConfirmationEmail(client, cleaner, schedule):
     sent_from = gmail_user
     to = [client,cleaner]
     subject = 'Testing 123'
-    body = f'This is a confirmation email for the scheduled Cleaning shift on {schedule["date"]} from {schedule["start"]} to {schedule["end"]}'
+    body = f'This is a confirmation email for the scheduled Cleaning shift on {schedule["date"]} starting at {schedule["start"]} for {schedule["end"]} hours.'
 
     email_text = """\
     From: %s

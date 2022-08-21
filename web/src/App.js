@@ -9,13 +9,13 @@ function App() {
   const [cleaners, setCleaners] = React.useState();
   const [status, setStatus] = React.useState();
 
-  const [client, setClient] = React.useState()
-  const [date, setDate] = React.useState();
-  const [start,setStart] = React.useState();
-  const [end, setEnd] = React.useState();
+  const [client, setClient] = React.useState('')
+  const [date, setDate] = React.useState('');
+  const [start,setStart] = React.useState('');
+  const [hours, setHours] = React.useState('');
   const [msg,setMsg] = React.useState(false)
   
-
+  const firstUpdate = React.useRef(0);
 
   const handleCleanerList = (event) => {
     request.getCleanersInCompany(event.target.value).then((result) => {
@@ -32,7 +32,7 @@ function App() {
     let cleaner = t.options[t.selectedIndex].text
     
     axios.post("http://127.0.0.1:3001/setAppt", 
-        {client,cleaner,start,end,date}
+        {client,cleaner,start,hours,date}
         ).then(d=>console.log(d))
         .catch(er=>console.log(er))
     
@@ -40,8 +40,8 @@ function App() {
     setClient("")
     setDate("")
     setStart("")
-    setEnd("")
-    setMsg(!msg)
+    setHours("")
+    setMsg(true)
     
   }
 
@@ -71,10 +71,15 @@ function App() {
     }
     fetchData();
   }, []);
-  React.useEffect(()=>{
-    console.log("booking confirmed")
-    
-  },[msg])
+
+  // React.useEffect(()=>{
+  //   if(firstUpdate.current === 0){
+  //     firstUpdate.current += 1
+  //     console.log("now changd")
+  //     return;
+  //   }
+  //   console.log("booking confirmed")
+  // },[msg])
   return (
     <div className="w-6/12 mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
       <h1 className="text-3xl text-gray-700 font-bold mb-5">
@@ -92,7 +97,7 @@ function App() {
                 placeholder="Client Email Address"
                 value={client}
                 name='client'
-                onChange = {(e)=>setClient(e.target.value)}
+                onChange = {(e)=>{setClient(e.target.value);setMsg(false);console.log(msg)}}
                 required
               />
             </div>
@@ -205,7 +210,7 @@ function App() {
             </div>
             <div className="grid grid-cols-2 gap-4 pt-3">
               <div className="text-sm">Start Hours</div>
-              <div className="text-sm">End Hours</div>
+              <div className="text-sm">Ends in:</div>
               <div className="">
                 <input
                   type="time"
@@ -231,10 +236,12 @@ function App() {
               </div>
               <div className="">
                 <input
-                  type="time"
-                  value = {end}
+                  type="number"
+                  max={11}
+                  min={1}
+                  value = {hours}
                   required
-                  onChange = {(e)=>setEnd(e.target.value)}
+                  onChange = {(e)=>setHours(e.target.value)}
                   className="form-control block
                                         w-full
                                         px-3
@@ -249,7 +256,7 @@ function App() {
                                         ease-in-out
                                         m-0
                                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Select"
+                  placeholder="No of Hours"
                 />
               </div>
             </div>
@@ -283,7 +290,7 @@ function App() {
         <div>
 
         </div>
-        <div className="message" style={{display:"none"}}>
+        <div className="message">
           {msg && 
               <FlashMessage duration={5000} persistOnHover={true}>
               <p style={{color:"green"}}>Your booking has been confirmed. Check your email.</p>

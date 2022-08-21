@@ -121,20 +121,16 @@ def setAppt():
     if request.method == "POST":
         request_data = json.loads(request.data)
         #print(request_data['content'])
-        print(request_data.get('client'))
-        print(request_data.get('cleaner'))
-        print(request_data.get('start'))
-        print(request_data.get('end'))
-        print(request_data.get('date'))
+        
         #logging shift details in log file
         append_new_line('log.txt', request_data.get('client') + " scheduled " + request_data.get('cleaner') + " from "
-        + request_data.get('start') + " to " + request_data.get('end')+ " on " + request_data.get('date'))
+        + request_data.get('start') + " for " + request_data.get('hours')+ " hours on " + request_data.get('date'))
         
         #send the confirmation email to the client and the cleaner
         sendConfirmationEmail(request_data.get('client'),request_data.get('cleaner').split(":")[1],
             {
                 "start":request_data.get('start'),
-                "end":request_data.get('end'),
+                "end":request_data.get('hours'),
                 "date":request_data.get('date')
             }); 
 
