@@ -132,6 +132,8 @@ def setAppt():
                 "start":request_data.get('start'),
                 "end":request_data.get('hours'),
                 "date":request_data.get('date')
+                # "messagae":f'This is a reminder email for the scheduled Cleaning shift starting in 2 hrs scheduled on {schedule["date"]} starting at {schedule["start"]} for {schedule["end"]} hours.',
+                # "purpose":"confirmation"
             }); 
 
         #sedning it back to the front end as response...
