@@ -1,7 +1,7 @@
 <h1 align='center'>YOLA, Let Us SWEEP<span><img src="icons/project.png" height="25" width="25"/></span></h1>
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
     <h2 id="description">Description</h2>
-    <p><img src="icons/search.png" height="18" width="20"/>Company Yola is a startup company that connects cleaning companies to individuals and companies(client). A solution was built to manage cleaners profile, client details, payment, etc. But the company needed a way to schedule cleaners' shifts and send reminders when a client requested a change.</p>
+    <p><img src="icons/search.png" height="18" width="20"/>Company Yola is a startup company that connects cleaning companies to individuals and companies(client). A solution is built to manage cleaners profile, client details, payment, etc. But the company needed a way to schedule cleaners' shifts and send reminders when a client requested a change. In this app, a client is registered with his email id and picks a cleaner from a specific company and the schedule. The client and the cleaner both get a confirmation email in real time and the cleaner also gets a reminder email 2 hours before the scheduled shift.</p>
     <p>Video Demo: <a href="https://drive.google.com/file/d/1HrvPRO5L-fWXS_1l5iywjcYQb8zD-K7J/view?usp=sharing">VIDEO LINK</p>
     <hr>
     <h2>Table of Contents</h2>
