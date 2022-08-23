@@ -18,7 +18,7 @@
 
     $ git clone https://github.com/KKkaran/react-flask-takehome.git
     $ cd python-flask-takehome/api
-    $ python3 -m virtualenv env
+    $ python3 -m venv env
     $ source env/bin/activate  ----- for mac      AND     source env/Scripts/activate ----- for windows
     $ pip3 install -r requirements.txt
     $ python3 data.py
