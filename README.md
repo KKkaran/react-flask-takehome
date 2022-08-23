@@ -21,6 +21,7 @@
     $ python3 -m venv env
     $ source env/bin/activate  ----- for mac      AND     source env/Scripts/activate ----- for windows
     $ pip3 install -r requirements.txt
+    $ pip3 install python-dotenv
     $ python3 data.py
     $ python3 runserver.py
     
