@@ -1,89 +1,44 @@
+<h1 align='center'>YOLA, Let Us SWEEP<span><img src="icons/project.png" height="25" width="25"/></span></h1>
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
+    <h2 id="description">Description</h2>
+    <p><img src="icons/search.png" height="18" width="20"/>Company Yola is a startup company that connects cleaning companies to individuals and companies(client). A solution was built to manage cleaners profile, client details, payment, etc. But the company needed a way to schedule cleaners' shifts and send reminders when a client requested a change.</p>
+    <p>Video Demo: <a href="https://drive.google.com/file/d/1HrvPRO5L-fWXS_1l5iywjcYQb8zD-K7J/view?usp=sharing">VIDEO LINK</p>
+    <hr>
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#description">Description</a></li>
+        <li><a href="#install">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#license">License</a></li>
+        <li><a href="#contri">Contributing</a></li>
+    </ul>
+    <hr>
+    <h2 id="install">Installation for backend:</h2>
+    <p><img src="icons/wheel.png" height="18" width="20"/>
 
-Swept coding take home challenge. This little project allows you to showcase your skills developing with our tech stack.
-
-# Overview
-Company Yola is a startup company that connects cleaning companies to individuals and companies(client). A solution was built to manage cleaners profile, client details, payment, etc. But the company needed a way to schedule cleaners' shifts and send reminders when a client requested a change.
-
-## How the system works
-* A cleaning company can offer multiple cleaners to chose from
-* A cleaner can specify availability
-* A client can request a cleaner from a company
-* A client can schedule and book a cleaning shift 
-
-## Workflow
-* Client enter email address
-* Select Company from dropdown
-* Select Cleaner from dropdown
-* Schedule a cleaning shift 
-
-## Schema.sql 
-```
-User
-> ID 
-> Name 
-> Email Address 
-> Availability Status
-> Company ID
-
-Schedule
-> ID
-> User ID
-> Client ID
-> Date range (text)
-
-Company 
-> ID 
-> Name
-
-Client
-> ID 
-> Email Address
-```
-
-> Note: Feel free to add other columns to the above schema if you think they'd be useful. For example, you can add a created_at and updated_at for each entity.
-# Deliverables
-## Technologies
-* Python/Flask
-* JavaScript/React
-* MySQL
-
-## Functional Specification
-* No sign-in/sign-up/login required
-* Client are identified only by their email addresses
-* All information should be predefined (pre-seeded in the DB)
-* Email messages can be logged in a file instead of sending an actual email
-
-## Frontend (React)
-Update the UI to:
-
-* Allow a client to submit and create a new cleaning shift
-* Display a confirmation message the booking was created
-
-## Backend (Python/Flask/Celery)
-Build a Web API that can:
-* Create a new cleaning shift
-* Send a booking confirmation email to both the client and cleaner
-* Remind the cleaner 2hrs before the shift 
-    >(sample: Hello john doe, your cleaning shift for client XYZ is in 2hours. Don’t be late and do a good job. Thanks)
-
-# Next Steps
-* Go through the requirements and let us know if you have any questions
-* Setup the project in this repo, see the ReadMe files in the api and web folders
-* Add additional pre-seeded data where required
-* Create required scheduling endpoint
-* Create notification tasks
-* Update UI to handle new use case 
-
-# Evaluation Criteria
-* Write the sent messages/mails to a log file (extra bonus if external mail service is implemented)
-* Set up the scheduling logic to handle the process
-* SQL queries for creating new entities
-* Necessary Python APIs exposed
-* Updated UI to permit new use cases
-* Unit Tests for core logic
-* Strong OOP principles
-* Well documented README.md
-* Video demo/presentation
-
-# Run Services
-`docker-compose up -d --build`
+    $ git clone https://github.com/KKkaran/react-flask-takehome.git
+    $ cd python-flask-takehome/api
+    $ pip install -r requirements.txt
+    $ python3 data.py
+    $ python3 runserver.py
+    
+</p>
+    <hr>
+    <h2 id="install">Installation for frontend</h2>
+    <p><img src="icons/wheel.png" height="18" width="20"/>
+    
+    $ npm install
+    $ npm start
+</p>
+    <hr>
+    <h2 id="usage">Usage</h2>
+    <p><img src="icons/laptop.png" height="18" width="20"/>Take Home Assignment</p>
+    <hr>
+    <h2 id="license">License</h2>
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
+    <p>MIT</p>
+    <hr>
+    <h2 id="contri">Contributing</h2>
+    <p><img src="icons/people.png" height="18" width="20"/>Karan Sodhi</p>
+    <hr>
+    
