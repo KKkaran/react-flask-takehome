@@ -8,10 +8,6 @@ from flask_restx import Resource, fields, Api
 from flask_cors import CORS
 from loggingFile import *
 from utils.sendEmail import *
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired,Email,Length
-
 
 app = Flask(__name__)
 api = Api(app)
@@ -25,12 +21,6 @@ TYPES = [
     ('available', 'Available'),
     ('not available', 'Not available')
 ]
-###########FORMS#############
-
-class LoginForm(FlaskForm):
-    email = Email
-    password = PasswordField('password',validators = [InputRequired(), Length(min=8,max=80)])
-
 
 ########### MODELS #############
 class User(db.Model):
